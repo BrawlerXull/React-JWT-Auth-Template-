@@ -22,7 +22,7 @@ export default function Header() {
   };
 
   return (
-    <Disclosure as="nav" className="bg-gray-700">
+    <Disclosure as="nav" className="bg-gray-700 top-0">
       {({ open }) => (
         <>
           <div className="mx-auto sm:px-10 py-1">
