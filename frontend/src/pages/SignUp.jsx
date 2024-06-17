@@ -45,14 +45,14 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-800 flex flex-col lg:flex-row">
+    <div className=" bg-gray-800 flex flex-col lg:flex-row h-[85vh]">
       {/* Left Section */}
       <div className="flex-1 p-6 lg:p-12 flex items-center justify-center lg:justify-start">
         <div className="text-center lg:text-left lg:pl-[25%]">
-          <Link to="/" className="font-bold dark:text-white text-4xl">
-            <span className="rounded-lg text-white text-6xl">Newsifier</span>
+          <Link to="/" className="font-bold dark:text-white text-4xl ">
+            <span className="rounded-lg text-6xl text-red-300">Newsifier</span>
           </Link>
-          <p className="mt-5 text-white text-2xl">
+          <p className="mt-5 text-2xl  text-blue-200">
             Stay updated with all the latest news!
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function SignUp() {
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col">
-            <Label value="Your username" className="text-white" />
+            <Label value="Username" className="text-white" />
             <TextInput
               type="text"
               placeholder="Username"
@@ -75,7 +75,7 @@ export default function SignUp() {
             />
           </div>
           <div className="flex flex-col">
-            <Label value="Your email" className="text-white" />
+            <Label value="Email" className="text-white" />
             <TextInput
               type="text"
               placeholder="name@company.com"
@@ -85,7 +85,7 @@ export default function SignUp() {
             />
           </div>
           <div className="flex flex-col">
-            <Label value="Your password" className="text-white" />
+            <Label value="Password" className="text-white" />
             <TextInput
               type="password"
               placeholder="Password"

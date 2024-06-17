@@ -25,7 +25,7 @@ export default function Header() {
     <Disclosure as="nav" className="bg-gray-700">
       {({ open }) => (
         <>
-          <div className="mx-auto sm:px-6">
+          <div className="mx-auto sm:px-10 py-1">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <DisclosureButton
@@ -43,7 +43,7 @@ export default function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <div className="text-white text-3xl">Newsify</div>
+                  <div className=" text-purple-400 text-3xl">Newsifier</div>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
