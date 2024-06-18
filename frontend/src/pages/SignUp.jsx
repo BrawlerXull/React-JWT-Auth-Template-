@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import useSignUp from '../hooks/useSignUp';
 import { useSelector } from 'react-redux';
+import OAuth from '../components/OAuth';
 
 const SignUp = () => {
     const { loading } = useSelector((state) => state.user);
@@ -95,6 +96,7 @@ const SignUp = () => {
                 'Sign Up'
               )}
             </button>
+          <OAuth />
           </form>
           <div className="flex gap-2 text-sm mt-5 text-white">
             <span>Have an account?</span>
@@ -102,6 +104,7 @@ const SignUp = () => {
               Sign In
             </Link>
           </div>
+
         </div>
       </div>
       <Footer />

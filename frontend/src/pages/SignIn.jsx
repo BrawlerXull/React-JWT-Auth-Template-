@@ -1,17 +1,18 @@
-import  { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Label, Spinner, TextInput } from 'flowbite-react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import useSignIn from '../hooks/useSignIn';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Label, Spinner, TextInput } from "flowbite-react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import useSignIn from "../hooks/useSignIn";
+import OAuth from "../components/OAuth";
 
 const SignIn = () => {
   const { loading } = useSelector((state) => state.user);
   const { handleSubmit } = useSignIn();
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -77,9 +78,11 @@ const SignIn = () => {
                   <span className="pl-3">Loading...</span>
                 </div>
               ) : (
-                'Sign In'
+                "Sign In"
               )}
             </button>
+          <OAuth />
+            
           </form>
           <div className="flex gap-2 text-sm mt-5 text-white">
             <span>Do Not Have an account?</span>
