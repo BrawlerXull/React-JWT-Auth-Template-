@@ -3,6 +3,8 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import { Toaster } from "sonner";
 import SignIn from "./pages/SignIn";
+import Dashboard from "./pages/Dashboard";
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
   return (
@@ -13,6 +15,9 @@ export default function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route element={<PrivateRoute />}>
+          <Route path='/dashboard' element={<Dashboard />} />
+        </Route>
       </Routes>
       
     </BrowserRouter>
