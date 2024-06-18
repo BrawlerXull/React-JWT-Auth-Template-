@@ -7,7 +7,7 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
-import {  Button, Dropdown } from "flowbite-react";
+import { Button, Dropdown } from "flowbite-react";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -85,7 +85,12 @@ export default function Header() {
                     arrowIcon={false}
                     inline
                     label={
-                      <img src={currentUser.profilePicture} alt="" referrerPolicy="no-referrer"  className="h-10 rounded-full" />
+                      <img
+                        src={currentUser.profilePicture}
+                        alt=""
+                        referrerPolicy="no-referrer"
+                        className="h-10 rounded-full"
+                      />
                     }
                   >
                     <Dropdown.Header>
@@ -97,16 +102,23 @@ export default function Header() {
                       </span>
                     </Dropdown.Header>
                     <Link to={"/dashboard?tab=profile"}>
-                      <Dropdown.Item className="text-white">Profile</Dropdown.Item>
+                      <Dropdown.Item className="text-white">
+                        Profile
+                      </Dropdown.Item>
                     </Link>
                     <Dropdown.Divider />
-                    <Dropdown.Item className="text-white">Sign out</Dropdown.Item>
+                    <Dropdown.Item className="text-white">
+                      Sign out
+                    </Dropdown.Item>
                   </Dropdown>
                 ) : (
                   <Link to="/sign-in">
-                    <Button gradientDuoTone="purpleToBlue" outline>
+                    <button
+                      type="submit"
+                      className="bg-transparent hover:bg-blue-500 text-blue-400 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full"
+                    >
                       Sign In
-                    </Button>
+                    </button>
                   </Link>
                 )}
               </div>
