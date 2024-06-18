@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Disclosure,
   DisclosureButton,
@@ -7,12 +7,12 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
-import { Button, Dropdown } from "flowbite-react";
+import { Dropdown } from "flowbite-react";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
+  { name: "Profile", href: "/profile", current: false },
   { name: "About", href: "/about", current: false },
-  { name: "Projects", href: "/projects", current: false },
 ];
 
 function classNames(...classes) {
@@ -21,11 +21,18 @@ function classNames(...classes) {
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
   const { currentUser } = useSelector((state) => state.user);
+
+  const updatedNavigation = navigation.map((item) => ({
+    ...item,
+    current: item.href === location.pathname,
+  }));
 
   return (
     <Disclosure as="nav" className="bg-gray-700 top-0">
@@ -53,7 +60,7 @@ export default function Header() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {updatedNavigation.map((item) => (
                       <Link
                         key={item.name}
                         to={item.href}
@@ -93,23 +100,21 @@ export default function Header() {
                       />
                     }
                   >
-                    <Dropdown.Header>
-                      <span className="block text-sm text-white">
+                    <Dropdown.Header color="red">
+                      <span className="block text-sm ">
                         {currentUser.username}
                       </span>
-                      <span className="block text-sm font-medium truncate text-white">
+                      <span className="block text-sm font-medium truncat">
                         {currentUser.email}
                       </span>
                     </Dropdown.Header>
-                    <Link to={"/dashboard?tab=profile"}>
-                      <Dropdown.Item className="text-white">
+                    <Link to={"/profile"}>
+                      <Dropdown.Item className=" hover:bg-gray-300 ">
                         Profile
                       </Dropdown.Item>
                     </Link>
                     <Dropdown.Divider />
-                    <Dropdown.Item className="text-white">
-                      Sign out
-                    </Dropdown.Item>
+                    <Dropdown.Item className=" hover:bg-gray-300">Sign out</Dropdown.Item>
                   </Dropdown>
                 ) : (
                   <Link to="/sign-in">
@@ -127,7 +132,7 @@ export default function Header() {
 
           <DisclosurePanel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
+              {updatedNavigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
