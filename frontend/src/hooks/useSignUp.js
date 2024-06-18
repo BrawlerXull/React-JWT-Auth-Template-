@@ -21,8 +21,8 @@ const useSignUp = () => {
         toast.error(data.message)
         dispatch(signInFailure(data.message));
       } else {
-        navigate('/home');
-        dispatch(signInSuccess(data.user));
+        navigate('/sign-in');
+        dispatch(signInSuccess());
       }
     } catch (error) {
       dispatch(signInFailure(error.message));
