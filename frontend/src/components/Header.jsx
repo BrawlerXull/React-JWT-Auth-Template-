@@ -6,8 +6,9 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "flowbite-react";
+import { signoutSuccess } from '../redux/user/userSlice';
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -33,7 +34,22 @@ export default function Header() {
     ...item,
     current: item.href === location.pathname,
   }));
-
+  const dispatch = useDispatch();
+  const handleSignout = async () => {
+    try {
+      const res = await fetch('/api/user/signout', {
+        method: 'POST',
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <Disclosure as="nav" className="bg-gray-700 top-0">
       {({ open }) => (
@@ -101,21 +117,22 @@ export default function Header() {
                     }
                   >
                     <Dropdown.Header color="red">
-                      <span className="block text-sm ">
+                      <span className="block text-sm text-white ">
                         {currentUser.username}
                       </span>
-                      <span className="block text-sm font-medium truncat">
+                      <span className="block text-sm font-medium truncat text-white">
                         {currentUser.email}
                       </span>
                     </Dropdown.Header>
                     <Link to={"/profile"}>
-                      <Dropdown.Item className=" hover:bg-gray-300 ">
+                      <Dropdown.Item className=" hover:bg-gray-50  hover:text-gray-600 text-white">
                         Profile
                       </Dropdown.Item>
                     </Link>
                     <Dropdown.Divider />
-                    <Dropdown.Item className=" hover:bg-gray-300">Sign out</Dropdown.Item>
-                  </Dropdown>
+                    
+                    <Dropdown.Item className=" hover:bg-gray-50  hover:text-gray-600 text-white" onClick={handleSignout}>Sign out</Dropdown.Item>
+                          </Dropdown>
                 ) : (
                   <Link to="/sign-in">
                     <button
