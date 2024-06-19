@@ -6,9 +6,9 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "flowbite-react";
-import { signoutSuccess } from '../redux/user/userSlice';
+import useSignOut from "../hooks/useSignOut";
+import { useSelector } from "react-redux";
 
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -22,6 +22,7 @@ function classNames(...classes) {
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { handleSignout } = useSignOut();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -33,22 +34,6 @@ export default function Header() {
     ...item,
     current: item.href === location.pathname,
   }));
-  const dispatch = useDispatch();
-  const handleSignout = async () => {
-    try {
-      const res = await fetch('/api/user/signout', {
-        method: 'POST',
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        console.log(data.message);
-      } else {
-        dispatch(signoutSuccess());
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
   return (
     <Disclosure as="nav" className="bg-gray-700 top-0">
       {({ open }) => (
