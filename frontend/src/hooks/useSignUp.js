@@ -1,6 +1,6 @@
 
 import { useDispatch } from 'react-redux';
-import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
+import { signUpStart, signUpSuccess, signUpFailure } from '../redux/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
@@ -9,7 +9,7 @@ const useSignUp = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (formData) => {
-    dispatch(signInStart());
+    dispatch(signUpStart());
     try {
       const res = await fetch('http://localhost:3000/api/auth/signup', {
         method: 'POST',
@@ -19,13 +19,13 @@ const useSignUp = () => {
       const data = await res.json();
       if (data.success === false) {
         toast.error(data.message)
-        dispatch(signInFailure(data.message));
+        dispatch(signUpFailure(data.message));
       } else {
         navigate('/sign-in');
-        dispatch(signInSuccess());
+        dispatch(signUpSuccess());
       }
     } catch (error) {
-      dispatch(signInFailure(error.message));
+      dispatch(signUpFailure(error.message));
     }
   };
 
