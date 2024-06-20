@@ -91,6 +91,7 @@ export default function Header() {
                   <Dropdown
                     arrowIcon={false}
                     inline
+                    className="bg-black"
                     label={
                       <img
                         src={currentUser.profilePicture}
