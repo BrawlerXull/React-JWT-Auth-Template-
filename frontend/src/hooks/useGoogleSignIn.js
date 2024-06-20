@@ -25,6 +25,7 @@ const useGoogleSignIn = () => {
           email: user.email,
           googlePhotoUrl: user.photoURL,
         }),
+        credentials: 'include',
       });
 
       const data = await res.json();

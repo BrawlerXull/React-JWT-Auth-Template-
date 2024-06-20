@@ -11,6 +11,7 @@ const useSignOut = () => {
     try {
       const res = await fetch('http://localhost:3000/api/user/signout', {
         method: 'POST',
+        credentials: 'include',
       });
       const data = await res.json();
       if (!res.ok) {
