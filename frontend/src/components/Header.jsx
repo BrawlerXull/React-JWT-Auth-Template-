@@ -96,11 +96,11 @@ export default function Header() {
                         src={currentUser.profilePicture}
                         alt=""
                         referrerPolicy="no-referrer"
-                        className="h-10 rounded-full"
+                        className="h-10 rounded-full bg-black"
                       />
                     }
                   >
-                    <Dropdown.Header color="red">
+                    <Dropdown.Header >
                       <span className="block text-sm text-white ">
                         {currentUser.username}
                       </span>

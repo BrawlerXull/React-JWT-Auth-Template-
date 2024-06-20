@@ -7,6 +7,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import useSignOut from "../hooks/useSignOut";
 import useUpdateUser from "../hooks/useUpdateUser";
 import useDeleteUser from "../hooks/useDeleteUser";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
     const { currentUser } = useSelector((state) => state.user);
@@ -63,6 +64,15 @@ export default function Profile() {
                 "Update"
               )}
             </button>
+            {currentUser.isAdmin && (
+                <Link to={'/create-post'}>
+                    <button
+                    className="bg-transparent hover:bg-blue-500 text-blue-400 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full"
+                    >
+                    Create a post
+                    </button>
+                </Link>
+            )}
           </form>
           <div className="text-red-500 flex justify-between mt-5">
             <span onClick={() => setShowModal(true)} className='cursor-pointer'>
